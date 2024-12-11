@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from datetime import datetime
+import datetime
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ def log_event():
     data = request.json
     event = {
         'event_number': data['event_number'],
-        'time': datetime.now().strftime("%H:%M:%S"),
+        'time': (datetime.datetime.now() + datetime.timedelta(hours=2)).strftime("%H:%M:%S"),
         'message': data['message']
     }
     server_events.append(event)
